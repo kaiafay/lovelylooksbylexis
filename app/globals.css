@@ -1,0 +1,145 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter), 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), 'Cormorant Garamond Fallback', Georgia, serif;
+  --font-script: var(--font-italianno), cursive;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+  color-scheme: light;
+
+  /* Brand palette — drawn from the business card photography */
+  /* Warm cream off-white (card front background) */
+  --background: oklch(0.965 0.009 80);
+  /* Dark charcoal (card back background) */
+  --foreground: oklch(0.215 0.004 60);
+
+  --card: oklch(0.99 0.003 85);
+  --card-foreground: oklch(0.215 0.004 60);
+
+  --popover: oklch(0.99 0.003 85);
+  --popover-foreground: oklch(0.215 0.004 60);
+
+  /* Charcoal for primary buttons */
+  --primary: oklch(0.22 0.004 60);
+  --primary-foreground: oklch(0.965 0.009 80);
+
+  --secondary: oklch(0.93 0.008 78);
+  --secondary-foreground: oklch(0.22 0.004 60);
+
+  --muted: oklch(0.935 0.007 78);
+  --muted-foreground: oklch(0.52 0.006 70);
+
+  --accent: oklch(0.93 0.008 78);
+  --accent-foreground: oklch(0.22 0.004 60);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.885 0.008 78);
+  --input: oklch(0.885 0.008 78);
+  --ring: oklch(0.52 0.006 70);
+
+  --radius: 0rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+@layer utilities {
+  /* Small caps serif labels — tuned for legibility at micro sizes */
+  .text-serif-label {
+    @apply font-serif text-xs font-normal tracking-[0.18em] uppercase text-foreground/75;
+  }
+
+  /* Serif functional data (times, prices) — roman weight, no italic */
+  .text-serif-data {
+    @apply font-serif text-sm font-normal not-italic text-foreground/80;
+  }
+
+  /* Uppercase serif CTAs and nav actions */
+  .text-serif-cta {
+    @apply font-serif text-xs font-normal tracking-[0.18em] uppercase;
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/*
+ * Scroll reveals — intentional motions:
+ *   --lift            section headers: subtle 8px settle
+ *   --fade            content blocks: opacity only
+ *   --stagger-rise    portfolio tiles: gentle fade-up cascade (delay set inline)
+ *   --stagger-unfold  review cards: unfold from top with stagger (delay set inline)
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-reveal {
+    opacity: 0;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .scroll-reveal--lift {
+    transform: translateY(8px);
+  }
+
+  .scroll-reveal--stagger-rise {
+    transform: translateY(14px);
+    transition-duration: 0.7s;
+  }
+
+  .scroll-reveal--stagger-unfold {
+    transform: translateY(8px) scaleY(0.94);
+    transform-origin: top center;
+    transition-duration: 0.65s;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

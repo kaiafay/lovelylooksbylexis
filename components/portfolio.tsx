@@ -2,56 +2,17 @@
 
 import { useState } from 'react'
 
-/**
- * Portfolio photo grid.
- * Placeholder Unsplash images used below — swap for real client photography.
- */
 const PHOTOS = [
-  {
-    src: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80',
-    alt: 'Close-up of beautifully applied lash extensions — placeholder',
-    description: 'Classic lash extensions — natural, everyday finish.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80',
-    alt: 'Soft editorial beauty portrait — placeholder',
-    description: 'Hybrid set — soft volume with a refined shape.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80',
-    alt: 'Elegant lash close-up with soft lighting — placeholder',
-    description: 'Volume lashes — full, dimensional, and lightweight.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80',
-    alt: 'Close-up beauty portrait with lashes — placeholder',
-    description: 'Classic plus — added texture, still effortless.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1526413232644-8a40f03cc03b?w=800&q=80',
-    alt: 'Eye close-up showing lash set — placeholder',
-    description: 'Wet set — sleek, fresh-from-the-shower definition.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80',
-    alt: 'Soft-lit beauty portrait — placeholder',
-    description: 'Mega volume — bold density with a glamorous finish.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80',
-    alt: 'Editorial beauty close-up — placeholder',
-    description: 'Custom mapping — tailored to eye shape and style.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1519415943484-9fa1873496d4?w=800&q=80',
-    alt: 'Natural lash extension look — placeholder',
-    description: 'Natural enhancement — length without heaviness.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800&q=80',
-    alt: 'Glamorous volume lash set — placeholder',
-    description: 'Full glam volume — striking from every angle.',
-  },
+  { src: '/portfolio/lashes1.webp', alt: 'Volume lash extensions' },
+  { src: '/portfolio/lashes2.webp', alt: 'Lash extensions with soft curl' },
+  { src: '/portfolio/lashes3.webp', alt: 'Full lash set' },
+  { src: '/portfolio/lashes4.webp', alt: 'Dark volume lash extensions' },
+  { src: '/portfolio/lashes5.webp', alt: 'Side-angle lash extensions' },
+  { src: '/portfolio/lashes6.webp', alt: 'Dense lash fan set' },
+  { src: '/portfolio/lashes7.webp', alt: 'Long lash extensions' },
+  { src: '/portfolio/lashes8.webp', alt: 'Hybrid lash extensions' },
+  { src: '/portfolio/lashes9.webp', alt: 'Mega volume lash set' },
+  { src: '/portfolio/lashes10.webp', alt: 'Glamorous lash extensions' },
 ]
 
 type Photo = (typeof PHOTOS)[number]
@@ -74,7 +35,7 @@ function PortfolioItem({
       style={{ transitionDelay: `${index * 50}ms` }}
       onClick={onToggle}
       aria-expanded={isActive}
-      aria-label={photo.description ? `${photo.alt}. ${photo.description}` : photo.alt}
+      aria-label={photo.alt}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -90,9 +51,7 @@ function PortfolioItem({
         }`}
         aria-hidden="true"
       >
-        {photo.description && (
-          <p className="font-sans text-sm text-white/90 leading-relaxed">{photo.description}</p>
-        )}
+        <p className="font-sans text-sm text-white/90 leading-relaxed">{photo.alt}</p>
       </div>
     </button>
   )
@@ -128,7 +87,6 @@ export function Portfolio() {
           ))}
         </div>
 
-        {/* TODO: Replace Unsplash placeholder images above with real client photos */}
       </div>
     </section>
   )
